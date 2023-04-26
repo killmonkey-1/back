@@ -2,19 +2,45 @@
   <div id="app">
     <div style="display: flex;">
       
-        <button @click="folderList" class="plus">+</button>
+        <button class="plus" @click="isMenuVisible = true">+</button>
         <div class="pages">
           Добавить папку
         </div>
-      
+
         
-        <div v-if="folderList === 0"
-        >
-        добавленых постов нет
-        </div>
+      
       <div class="pages">
         Добавить папку
       </div>
+      <div class="pagesdob" v-if="isMenuVisible === true" >
+        <input v-model="folder.folderName" placeholder="Введите название папки"/>
+        <div class="color">
+          <button class="red" @click="addColor"></button>
+          <button class="blue" @click="addColor"></button>
+          <button class="green" @click="addColor"></button>
+          <button class="gray" @click="addColor"></button>
+          <button class="pink" @click="addColor"></button>
+          <button class="black" @click="addColor"></button>
+          <button class="purple" @click="addColor"></button>
+          <button class="aquamarine" @click="addColor"></button>
+
+        </div>
+         <button @click="addFolder">Добавить</button>
+      </div>
+
+      <div 
+        v-for="(folder, index) in folders" 
+        :key="index"
+      >
+        {{ folder.folderName }}
+      </div>
+      <div 
+        v-for="(folder, index) in colors" 
+        :key="index"
+      >
+        {{ folder.folderColor }}
+      </div>  
+      
 
     </div>  
   </div>
@@ -29,17 +55,27 @@
 export default {
     name:'App',
     data(){
-        return{
+        return {
         folder:{
-        folderName:'',
-        folderColor:'',
-        folderTasks:[],
+          folderName:'',
+          folderColor:'',
+          folderTasks:[],
             },
+            folders: [],
+            isMenuVisible: false,
+            colors: [],
         }
     },
     methods:{
-      folderList(){
-         this.$emit
+      addFolder() {
+         this.colors.push({
+          ...this.folder,
+         })
+      },
+      addColor(){
+         this.colors.push({
+          ...this.folder,
+         })
       },
     }
 
@@ -110,5 +146,85 @@ letter-spacing: 0.15px;
 color: #767676;
 
 }
+.red{
+  background-color: red;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius:50% ;
+  width: 30px;
+  height: 30px;
+}
+.blue{
+  background-color: blue;
+      margin-left: 5px;
+  margin-right: 5px;
+  border-radius:50% ;
+    width: 30px;
+  height: 30px;
+}
+.green{
+  background-color: green;
+      margin-left: 5px;
+  margin-right: 5px;
+  border-radius:50% ;
+    width: 30px;
+  height: 30px;
+}
+.gray{
+  background-color: gray;
+       margin-left: 5px;
+  margin-right: 5px;
+  border-radius:50% ;
+    width: 30px;
+  height: 30px;
+}
+.pink{
+  background-color: pink;
+      margin-left: 5px;
+  margin-right: 5px;
+  border-radius:50% ;
+    width: 30px;
+  height: 30px;
+}
+.black{
+  background-color: black;
+      margin-left: 5px;
+  margin-right: 5px;
+  border-radius:50% ;
+    width: 30px;
+  height: 30px;
+}
+.purple{
+  background-color: purple;
+      margin-left: 5px;
+  margin-right: 5px;
+  border-radius:50% ;
+    width: 30px;
+  height: 30px;
+}
+.aquamarine{
+  background-color: aquamarine;
+      margin-left: 5px;
+  margin-right: 5px;
+  border-radius:50% ;
+    width: 30px;
+  height: 30px;
+}
+.color{
 
+  display: flex;
+  align-items:center
+ 
+
+}
+.pagesdob{
+  width: 450px;
+  height: 150px;
+  background-color: rgb(201, 201, 201);
+  position: absolute;
+  border-radius:10px ;
+  margin-top: 370px;
+  margin-left: 50px;
+  border: 1px solid gray;
+}
 </style>
